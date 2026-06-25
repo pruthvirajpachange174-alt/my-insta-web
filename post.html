@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal - Create Post</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="dashboard-page">
+        <section class="dashboard-panel">
+            <div class="directory-header">
+                <div>
+                    <h2>Compose Update</h2>
+                    <p>Share context summaries or photo highlights directly to your campus network profile.</p>
+                </div>
+                <a href="dashboard.html" class="secondary-button small-button" style="display:inline-flex; align-items:center; text-decoration:none;">← Home Feed</a>
+            </div>
+
+            <form id="postForm" class="post-form" novalidate>
+                <label for="postText">Blog Content Description</label>
+                <textarea id="postText" name="postText" rows="5" placeholder="Write something insightful today..." required></textarea>
+
+                <label for="postPhoto">Include Optional Illustration Attachment</label>
+                <input id="postPhoto" name="postPhoto" type="file" accept="image/*">
+                <img id="postPhotoPreview" class="post-photo-preview hidden" src="" alt="Post image compilation frame preview">
+
+                <button id="publishPostButton" type="submit">Publish Post Update</button>
+            </form>
+            <p id="message" class="message" role="status" aria-live="polite"></p>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+    <script src="post.js"></script>
+</body>
+</html>

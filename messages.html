@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal - Direct Messages</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="dashboard-page">
+        <section class="dashboard-panel">
+            <div class="directory-header">
+                <div>
+                    <h2>Direct Messages Inbox</h2>
+                    <p>Conversations sent to your profile by other registered students.</p>
+                </div>
+                <a href="dashboard.html" class="secondary-button small-button" style="display:inline-flex; align-items:center; text-decoration:none;">← Back to Home</a>
+            </div>
+
+            <div id="messagesList" class="messages-list" style="margin-top:20px;">
+                <p class="empty-state">Loading message interactions...</p>
+            </div>
+            <p id="message" class="message" role="status" aria-live="polite"></p>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+    <script src="messages.js"></script>
+</body>
+</html>

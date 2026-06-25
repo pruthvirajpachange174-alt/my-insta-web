@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="dashboard-page">
+        <section class="dashboard-panel">
+            <div class="brand">
+                <span class="brand-mark">SR</span>
+                <div>
+                    <h1>Student Profile</h1>
+                    <p id="userMessage">Checking login...</p>
+                </div>
+            </div>
+
+            <form id="profileForm" class="profile-form hidden" novalidate>
+                <div class="photo-picker">
+                    <img id="photoPreview" class="photo-preview" src="" alt="Profile preview">
+                    <div>
+                        <label for="profilePhoto">Upload your profile pic</label>
+                        <input id="profilePhoto" name="profilePhoto" type="file" accept="image/*">
+                    </div>
+                </div>
+
+                <label for="fullName">Name</label>
+                <input id="fullName" name="fullName" type="text" autocomplete="name" placeholder="Enter your full name" required>
+
+                <label for="dob">Date of Birth</label>
+                <input id="dob" name="dob" type="date" required>
+
+                <label for="currentStudy">Graduation Year or Current Study</label>
+                <input id="currentStudy" name="currentStudy" type="text" placeholder="Example: B.Tech CSE, 2027" required>
+
+                <label for="skills">Skills</label>
+                <input id="skills" name="skills" type="text" placeholder="Example: Java, Python, C, C++" required>
+
+                <button id="saveProfileButton" type="submit">Create Profile</button>
+            </form>
+
+            <section id="profileCard" class="profile-card hidden" aria-live="polite">
+                <div class="profile-top">
+                    <img id="profileImage" class="profile-image" src="" alt="Student profile photo">
+                    <div>
+                        <p class="profile-kicker">Login successful</p>
+                        <h2 id="profileName"></h2>
+                        <p id="profileEmail" class="profile-email"></p>
+                    </div>
+                </div>
+
+                <div class="profile-details">
+                    <div>
+                        <span>Date of Birth</span>
+                        <strong id="profileDob"></strong>
+                    </div>
+                    <div>
+                        <span>Study</span>
+                        <strong id="profileStudy"></strong>
+                    </div>
+                    <div>
+                        <span>Followers</span>
+                        <strong id="profileFollowerCount">0</strong>
+                    </div>
+                    <div>
+                        <span>Published Posts</span>
+                        <strong id="profilePostCount">0</strong>
+                    </div>
+                    <div style="grid-column: span 2;">
+                        <span>Skills</span>
+                        <strong id="profileSkills"></strong>
+                    </div>
+                </div>
+
+                <div class="profile-actions">
+                    <button id="editProfileButton" class="secondary-button" type="button">Edit Profile</button>
+                    <button id="openMessagesButton" class="icon-button" type="button" aria-label="Open messages">
+                        <span class="paper-plane-icon"></span>
+                        Messages
+                    </button>
+                    <button id="logoutButton" type="button">Logout</button>
+                </div>
+            </section>
+
+            <section id="messagesPanel" class="messages-panel hidden">
+                <div class="directory-header">
+                    <div>
+                        <h2>Messages</h2>
+                        <p>Messages sent to your profile.</p>
+                    </div>
+                    <button id="closeMessagesButton" class="secondary-button small-button" type="button">Close</button>
+                </div>
+
+                <div id="messagesList" class="messages-list"></div>
+            </section>
+
+            <section id="profileDirectory" class="directory hidden">
+                <div class="directory-header">
+                    <div>
+                        <h2>Review Student Profiles</h2>
+                        <p>Search by name, email, study, or skills.</p>
+                    </div>
+                    <button id="refreshProfilesButton" class="secondary-button small-button" type="button">Refresh</button>
+                </div>
+
+                <input id="profileSearch" class="search-input" type="search" placeholder="Search students, skills, study...">
+                <div id="profilesList" class="profiles-list"></div>
+
+                <section id="selectedProfilePanel" class="selected-profile hidden">
+                    <div class="directory-header">
+                        <div>
+                            <h2 id="selectedProfileName"></h2>
+                            <p id="selectedProfileEmail"></p>
+                        </div>
+                        <button id="closeSelectedProfileButton" class="secondary-button small-button" type="button">Close</button>
+                    </div>
+
+                    <div class="selected-profile-top">
+                        <img id="selectedProfileImage" src="" alt="Selected student profile photo">
+                        <div class="profile-details selected-profile-details">
+                            <div>
+                                <span>Date of Birth</span>
+                                <strong id="selectedProfileDob"></strong>
+                            </div>
+                            <div>
+                                <span>Study</span>
+                                <strong id="selectedProfileStudy"></strong>
+                            </div>
+                            <div>
+                                <span>Skills</span>
+                                <strong id="selectedProfileSkills"></strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="selectedProfileActions" class="selected-profile-actions">
+                        <button id="followButton" type="button">Follow</button>
+                        <form id="messageForm" class="message-form" novalidate>
+                            <label for="messageText">Message</label>
+                            <textarea id="messageText" rows="3" placeholder="Write a private message..."></textarea>
+                            <button id="sendMessageButton" type="submit">
+                                <span class="paper-plane-icon"></span>
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+
+                    <h3 class="selected-posts-title">Published Posts</h3>
+                    <div id="selectedProfilePosts" class="posts-list"></div>
+                </section>
+            </section>
+
+            <section id="postSection" class="post-section hidden">
+                <div class="directory-header">
+                    <div>
+                        <h2>Create a Post</h2>
+                        <p>Share a blog update with an optional photo.</p>
+                    </div>
+                </div>
+
+                <form id="postForm" class="post-form" novalidate>
+                    <label for="postText">Blog Text</label>
+                    <textarea id="postText" name="postText" rows="4" placeholder="Write your post..." required></textarea>
+
+                    <label for="postPhoto">Upload Photo</label>
+                    <input id="postPhoto" name="postPhoto" type="file" accept="image/*">
+                    <img id="postPhotoPreview" class="post-photo-preview hidden" src="" alt="Post photo preview">
+
+                    <button id="publishPostButton" type="submit">Publish Post</button>
+                </form>
+            </section>
+
+            <p id="message" class="message" role="status" aria-live="polite"></p>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
